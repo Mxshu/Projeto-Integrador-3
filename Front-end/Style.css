@@ -1,6 +1,6 @@
 body{
     font-family: Arial, sans-serif;
-    background-color: #E39C7E;
+    background-color: #570A0B;
     margin: 0;
     padding: 0;
 }
@@ -15,10 +15,12 @@ header {
     border-bottom: 5px solid #ddd;
 }
 
-header h1 {
+header img.logo {
+    height: 60px;
+    width: auto;
     margin: 0;
-    font-size: 28px;
-    color: #333;
+    object-fit: contain;
+    flex-shrink: 0;
 }
 
 nav ul {
