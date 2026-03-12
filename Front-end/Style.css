@@ -57,6 +57,338 @@ nav a:hover {
     color: #E39C7E;
 }
 
+.user-section {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 200px;
+}
+
+.user-greeting {
+    font-family: 'Roboto', serif;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
+    min-height: 20px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-greeting:hover {
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 1024px) {
+    .user-section {
+        right: 15px;
+        max-width: 180px;
+    }
+    
+    .user-greeting {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-section {
+        right: 10px;
+        max-width: 150px;
+        gap: 5px;
+    }
+    
+    .user-greeting {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-section {
+        right: 5px;
+        max-width: 120px;
+        gap: 3px;
+    }
+    
+    .user-greeting {
+        font-size: 11px;
+        padding: 4px 6px;
+    }
+}
+
+.user-greeting.logged-in {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-greeting.logged-in::after {
+    content: '▼';
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    margin-top: 5px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 180px;
+    overflow: hidden;
+}
+
+.user-dropdown.hidden {
+    display: none;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Roboto', serif;
+    font-size: 13px;
+    color: #333;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-item:hover {
+    background-color: #f9f9f9;
+    color: #570A0B;
+    font-weight: 500;
+}
+
+.dropdown-item.logout {
+    color: #e74c3c;
+}
+
+.dropdown-item.logout:hover {
+    background-color: #ffe5e5;
+    color: #c0392b;
+}
+
+.login-modal {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.login-modal.hidden {
+    display: none;
+}
+
+.login-btn {
+    padding: 8px 16px;
+    background-color: #570A0B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto', serif;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    display: none;
+}
+
+.login-btn:hover {
+    background-color: #3a0607;
+}
+
+.login-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.login-modal-overlay.hidden {
+    display: none;
+}
+
+.login-modal-content form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Login Page Styles */
+.login-page-container {
+    background-color: #570A0B;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.login-page-content {
+    background-color: white;
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+.login-page-content h1 {
+    color: #570A0B;
+    text-align: center;
+    margin: 0 0 30px 0;
+    font-size: 28px;
+}
+
+.login-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.tab-button {
+    flex: 1;
+    padding: 12px;
+    background-color: transparent;
+    border: none;
+    color: #999;
+    font-family: 'Roboto', serif;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+}
+
+.tab-button:hover {
+    color: #570A0B;
+}
+
+.tab-button.active {
+    color: #570A0B;
+    border-bottom-color: #E39C7E;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    color: #570A0B;
+    font-size: 20px;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.login-page-content .form-group {
+    margin-bottom: 15px;
+}
+
+.login-page-content .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+    font-family: 'Roboto', serif;
+    font-size: 14px;
+}
+
+.login-page-content .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Roboto', serif;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.login-page-content .form-group input:focus {
+    outline: none;
+    border-color: #E39C7E;
+    box-shadow: 0 0 5px rgba(227, 156, 126, 0.3);
+}
+
+.login-page-content .btn-primary {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.form-hint {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 15px;
+    font-family: 'Roboto', serif;
+    font-style: italic;
+}
+
+.login-modal input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Roboto', serif;
+    font-size: 13px;
+    width: 150px;
+}
+
+.login-modal input:focus {
+    outline: none;
+    border-color: #E39C7E;
+    box-shadow: 0 0 5px rgba(227, 156, 126, 0.3);
+}
+
+.login-modal button {
+    padding: 8px 16px;
+    background-color: #570A0B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Roboto', serif;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+}
+
+.login-modal button:hover {
+    background-color: #3a0607;
+}
+
 h1 {
     color: white;
     font-family: 'Roboto', serif;
@@ -155,7 +487,7 @@ h4 {
 .appointments-container {
     max-width: 1200px;
     margin: 50px auto;
-    padding: 0 20px;
+    padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -178,19 +510,20 @@ h4 {
 
 .appointments-content {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 30px;
     padding: 30px;
+    align-items: flex-start;
 }
 
 .calendar-section {
     flex: 1;
-    min-width: 300px;
+    min-width: 250px;
 }
 
 .appointments-list-section {
     flex: 1;
-    min-width: 300px;
+    min-width: 250px;
 }
 
 .calendar-section h2,
@@ -199,7 +532,7 @@ h4 {
     font-family: 'Roboto', serif;
     margin-top: 0;
     border-bottom: 3px solid #570A0B;
-    padding-bottom: px;
+    padding-bottom: 10px;
 }
 
 /* Calendar Styles */
@@ -224,10 +557,11 @@ h4 {
     background-color: white;
     color: #570A0B;
     border: none;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 12px;
     transition: background-color 0.3s ease;
 }
 
@@ -466,6 +800,8 @@ h4 {
 .btn-back {
     display: inline-block;
     margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: 0;
     padding: 10px 20px;
     background-color: #E39C7E;
     color: white;
@@ -482,7 +818,7 @@ h4 {
 
 @media (max-width: 768px) {
     .appointments-content {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
     
     .form-row {

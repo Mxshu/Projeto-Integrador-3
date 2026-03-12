@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="Style.css" /> <!-- Link para o arquivo CSS externo -->
     </head>
 <body>
+    <script src="login.js"></script>
     <header>
         <a href="Pag_Inicial.html" class="logo-link"><img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia"></a>
         <nav>
@@ -16,6 +17,13 @@
                 <li><a href="agendar.html">Contato</a></li>
             </ul>
         </nav>
+        <div class="user-section">
+            <a href="Pag_Login.html" id="userGreeting" class="user-greeting">Olá, visitante!</a>
+            <div id="userDropdown" class="user-dropdown hidden">
+                <button class="dropdown-item" onclick="editUserInfo()">Editar Informações</button>
+                <button class="dropdown-item logout" onclick="logoutUser()">Sair</button>
+            </div>
+        </div>
     </header>
     <div class="container">
         <h1>Andreia Regina Alves Advocacia</h1>

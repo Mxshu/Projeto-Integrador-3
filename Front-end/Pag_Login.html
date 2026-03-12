@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Andreia Regina Alves Advocacia</title>
+    <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+    <script src="login.js"></script>
+    <header>
+        <a href="Pag_Inicial.html" class="logo-link"><img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia"></a>
+        <nav>
+            <ul>
+                <li><a href="Pag_Inicial.html">Serviços</a></li>
+                <li><a href="Pag_Agendamento.html">Meus agendamentos</a></li>
+                <li><a href="agendar.html">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="user-section">
+            <a href="Pag_Login.html" id="userGreeting" class="user-greeting">Olá, visitante!</a>
+            <div id="userDropdown" class="user-dropdown hidden">
+                <button class="dropdown-item" onclick="editUserInfo()">Editar Informações</button>
+                <button class="dropdown-item logout" onclick="logoutUser()">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-page-container">
+        <div class="login-page-content">
+            <h1>Andreia Regina Alves Advocacia</h1>
+            
+            <div class="login-tabs">
+                <button class="tab-button active" onclick="switchTab('login')">Fazer Login</button>
+                <button class="tab-button" onclick="switchTab('register')">Registrar-se</button>
+            </div>
+
+            <!-- Login Tab -->
+            <div id="loginTab" class="tab-content active">
+                <h2>Entrar em sua conta</h2>
+                <form onsubmit="authenticateUser(event)">
+                    <div class="form-group">
+                        <label for="loginEmail">Email *</label>
+                        <input type="email" id="loginEmail" placeholder="seu@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Senha *</label>
+                        <input type="password" id="loginPassword" placeholder="Digite sua senha" required />
+                    </div>
+                    <button type="submit" class="btn-primary">Entrar</button>
+                </form>
+                <p class="form-hint">Credenciais de teste: user@example.com / 123456</p>
+            </div>
+
+            <!-- Register Tab -->
+            <div id="registerTab" class="tab-content">
+                <h2>Criar nova conta</h2>
+                <form onsubmit="registerUser(event)">
+                    <div class="form-group">
+                        <label for="registerName">Nome Completo *</label>
+                        <input type="text" id="registerName" placeholder="Seu nome completo" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email *</label>
+                        <input type="email" id="registerEmail" placeholder="seu@email.com" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Senha *</label>
+                        <input type="password" id="registerPassword" placeholder="Crie uma senha" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPasswordConfirm">Confirmar Senha *</label>
+                        <input type="password" id="registerPasswordConfirm" placeholder="Confirme sua senha" required />
+                    </div>
+                    <button type="submit" class="btn-primary">Registrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Switch between login and register tabs
+        function switchTab(tab) {
+            const loginTab = document.getElementById('loginTab');
+            const registerTab = document.getElementById('registerTab');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            if (tab === 'login') {
+                loginTab.classList.add('active');
+                registerTab.classList.remove('active');
+                tabButtons[0].classList.add('active');
+            } else {
+                registerTab.classList.add('active');
+                loginTab.classList.remove('active');
+                tabButtons[1].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
