@@ -10,9 +10,10 @@ header {
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 5px solid #ddd;
+    gap: 30px;
 }
 
 header img.logo {
@@ -34,6 +35,7 @@ nav ul {
 nav a {
     text-decoration: none;
     color: #333;
+    justify-content: center;
     font-weight: 500;
     font-size: 16px;
     transition: color 0.3s ease;
@@ -41,4 +43,12 @@ nav a {
 
 nav a:hover {
     color: #E39C7E;
+}
+
+h1 {
+    color: white;
+    font-family: 'Roboto', serif;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
 }
