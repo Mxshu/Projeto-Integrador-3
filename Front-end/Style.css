@@ -167,6 +167,7 @@ h4 {
     color: white;
     padding: 30px;
     text-align: center;
+    width: 100%;
 }
 
 .appointments-header h1 {
@@ -197,8 +198,8 @@ h4 {
     color: #570A0B;
     font-family: 'Roboto', serif;
     margin-top: 0;
-    border-bottom: 3px solid #E39C7E;
-    padding-bottom: 10px;
+    border-bottom: 3px solid #570A0B;
+    padding-bottom: px;
 }
 
 /* Calendar Styles */
@@ -213,16 +214,15 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #E39C7E;
+    background-color: #570A0B;
     color: white;
     padding: 15px;
     font-family: 'Roboto', serif;
     font-weight: bold;
 }
-
 .calendar-header button {
     background-color: white;
-    color: #E39C7E;
+    color: #570A0B;
     border: none;
     padding: 8px 12px;
     border-radius: 4px;
@@ -283,7 +283,7 @@ h4 {
 }
 
 .calendar-day.selected {
-    background-color: #E39C7E;
+    background-color: #570A0B;
     color: white;
     font-weight: bold;
 }
@@ -306,7 +306,7 @@ h4 {
 
 .appointment-card {
     background-color: #f9f9f9;
-    border-left: 4px solid #E39C7E;
+    border-left: 4px solid #570A0B;
     padding: 15px;
     margin-bottom: 15px;
     border-radius: 4px;
@@ -393,7 +393,7 @@ h4 {
     color: #570A0B;
     font-family: 'Roboto', serif;
     margin-top: 0;
-    border-bottom: 3px solid #E39C7E;
+    border-bottom: 3px solid #570A0B;
     padding-bottom: 10px;
 }
 
