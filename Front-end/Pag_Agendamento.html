@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Agendamentos</title>
+    <link rel="stylesheet" href="Style.css" />
+</head>
+<body>
+    <header>
+        <a href="Pag_Inicial.html" class="logo-link"><img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia"></a>
+        <nav>
+            <ul>
+                <li><a href="Pag_Inicial.html">Serviços</a></li>
+                <li><a href="Pag_Agendamento.html">Meus agendamentos</a></li>
+                <li><a href="agendar.html">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <a href="Pag_Inicial.html" class="btn-back">← Voltar</a>
+
+    <div class="appointments-container">
+        <div class="appointments-header">
+            <h1>Meus Agendamentos</h1>
+        </div>
+
+        <div class="appointments-content">
+            <!-- Calendar Section -->
+            <div class="calendar-section">
+                <h2>Calendário</h2>
+                <div class="calendar">
+                    <div class="calendar-header">
+                        <button id="prevMonth">◀ Anterior</button>
+                        <span id="monthYear"></span>
+                        <button id="nextMonth">Próximo ▶</button>
+                    </div>
+                    <div class="calendar-weekdays">
+                        <div class="calendar-weekday">Dom</div>
+                        <div class="calendar-weekday">Seg</div>
+                        <div class="calendar-weekday">Ter</div>
+                        <div class="calendar-weekday">Qua</div>
+                        <div class="calendar-weekday">Qui</div>
+                        <div class="calendar-weekday">Sex</div>
+                        <div class="calendar-weekday">Sab</div>
+                    </div>
+                    <div class="calendar-days" id="calendarDays"></div>
+                </div>
+            </div>
+
+            <!-- Appointments List Section -->
+            <div class="appointments-list-section">
+                <h2>Próximos Agendamentos</h2>
+                <div class="appointments-list" id="appointmentsList">
+                    <div class="no-appointments">Nenhum agendamento para exibir</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Appointment Section -->
+        <div class="booking-section">
+            <h2>Agendar Nova Consulta</h2>
+            <form id="bookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="appointmentDate">Data do Agendamento *</label>
+                        <input type="date" id="appointmentDate" name="appointmentDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="appointmentTime">Horário *</label>
+                        <input type="time" id="appointmentTime" name="appointmentTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentService">Tipo de Serviço *</label>
+                    <select id="appointmentService" name="appointmentService" required>
+                        <option value="">Selecione um serviço</option>
+                        <option value="Consultoria Jurídica">Consultoria Jurídica</option>
+                        <option value="Direito Civil">Direito Civil</option>
+                        <option value="Direito Trabalhista">Direito Trabalhista</option>
+                        <option value="Direito Penal">Direito Penal</option>
+                        <option value="Direito Administrativo">Direito Administrativo</option>
+                        <option value="Análise de Contratos">Análise de Contratos</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentDescription">Descrição do Caso</label>
+                    <textarea id="appointmentDescription" name="appointmentDescription" placeholder="Descreva brevemente o assunto da consultoria..."></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Agendar Consulta</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="appointments.js"></script>
+</body>
