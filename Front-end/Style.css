@@ -42,6 +42,7 @@ nav a {
     font-weight: 500;
     font-size: 16px;
     font-family: 'Roboto Serif', serif;
+    font-style: bold;
     transition: color 0.3s ease;
 }
 
@@ -55,4 +56,31 @@ h1 {
     justify-content: center;
     text-align: center;
     margin-top: 50px;
+}
+
+p {
+    color: white;
+    font-family: 'Roboto', serif;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+img.perfil {
+    float: left;
+    margin: 5px;
+    max-width: 40%;
+    margin-top: 60px;
+    margin-right: 20px;
+}
+
+h4 {
+    color: white;
+    font-family: 'Roboto', serif;
+    text-align: left;
+    margin-top: 72px;
+    margin-left: 5px;
+    font-size: 15px;
+    overflow: hidden;
 }
