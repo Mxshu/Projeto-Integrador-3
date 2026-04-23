@@ -13,7 +13,8 @@ Este repositório contém o backend do Projeto Integrador 3 desenvolvido com Fas
 
 1. Acesse a pasta do backend:
 
-    cd back-end
+    cd Back-end
+    
 
 2. Ative o ambiente virtual:
 
@@ -26,12 +27,19 @@ Este repositório contém o backend do Projeto Integrador 3 desenvolvido com Fas
     venv\Scripts\activate.bat
     ou
     venv\Scripts\Activate.ps1
+    
 
-3. Execute o servidor:
+3. Instale os requirements:
+  
+    pip install -r requirements.txt
+    
+
+4. Execute o servidor:
 
     uvicorn main:app --reload
+    
 
-4. Acesse no navegador:
+5. Acesse no navegador:
     
     API:
     http://127.0.0.1:8000
