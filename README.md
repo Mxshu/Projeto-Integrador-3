@@ -21,6 +21,12 @@ Linux / WSL:
 
 source venv/bin/activate
 
+Windows:
+
+venv\Scripts\activate.bat
+ou
+venv\Scripts\Activate.ps1
+
 3. Execute o servidor:
 
 uvicorn main:app --reload
