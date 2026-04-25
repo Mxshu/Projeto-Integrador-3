@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from database import get_db
@@ -27,3 +27,16 @@ def create_appointment(data: AppointmentCreate, db: Session = Depends(get_db)):
 @router.get("/appointments/{user_id}")
 def get_appointments(user_id: int, db: Session = Depends(get_db)):
     return db.query(Appointment).filter(Appointment.user_id == user_id).all()
+
+
+@router.delete("/appointments/{appointment_id}")
+def delete_appointment(appointment_id: int, db: Session = Depends(get_db)):
+    appointment = db.query(Appointment).filter(Appointment.id == appointment_id).first()
+
+    if not appointment:
+        raise HTTPException(status_code=404, detail="Appointment not found")
+
+    db.delete(appointment)
+    db.commit()
+
+    return {"message": "Agendamento deletado com sucesso"}
