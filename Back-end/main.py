@@ -11,12 +11,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
-
-app.include_router(user_router.router)
-app.include_router(login.router)
-app.include_router(appointment_router.router)
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -24,6 +18,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+Base.metadata.create_all(bind=engine)
+
+app.include_router(user_router.router)
+app.include_router(login.router)
+app.include_router(appointment_router.router)
 
 
 @app.get("/")
