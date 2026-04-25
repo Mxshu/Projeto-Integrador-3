@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="Style.css" />
 </head>
 <body>
-    <script src="login.js"></script>
+
     <header>
-        <a href="Pag_Inicial.html" class="logo-link"><img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia"></a>
+        <a href="Pag_Inicial.html" class="logo-link">
+            <img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia">
+        </a>
         <nav>
             <ul>
                 <li><a href="Pag_Inicial.html">Serviços</a></li>
@@ -20,8 +22,8 @@
         <div class="user-section">
             <a href="Pag_Login.html" id="userGreeting" class="user-greeting">Olá, visitante!</a>
             <div id="userDropdown" class="user-dropdown hidden">
-                <button class="dropdown-item" onclick="editUserInfo()">Editar Informações</button>
-                <button class="dropdown-item logout" onclick="logoutUser()">Sair</button>
+                <button type="button" class="dropdown-item" onclick="editUserInfo()">Editar Informações</button>
+                <button type="button" class="dropdown-item logout" onclick="logoutUser()">Sair</button>
             </div>
         </div>
     </header>
@@ -32,16 +34,16 @@
 
     <div class="appointments-container">
         
-        
         <div class="appointments-content">
+            
             <!-- Calendar Section -->
             <div class="calendar-section">
                 <h2>Calendário</h2>
                 <div class="calendar">
                     <div class="calendar-header">
-                        <button id="prevMonth">◀ Anterior</button>
+                        <button type="button" id="prevMonth">◀ Anterior</button>
                         <span id="monthYear"></span>
-                        <button id="nextMonth">Próximo ▶</button>
+                        <button type="button" id="nextMonth">Próximo ▶</button>
                     </div>
                     <div class="calendar-weekdays">
                         <div class="calendar-weekday">Dom</div>
@@ -68,21 +70,23 @@
         <!-- New Appointment Section -->
         <div class="booking-section">
             <h2>Agendar novo atendimento</h2>
-            <form id="bookingForm">
+
+            <form id="bookingForm" action="javascript:void(0);">
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="appointmentDate">Data do Agendamento *</label>
-                        <input type="date" id="appointmentDate" name="appointmentDate" required>
+                        <input type="date" id="appointmentDate" required>
                     </div>
                     <div class="form-group">
                         <label for="appointmentTime">Horário *</label>
-                        <input type="time" id="appointmentTime" name="appointmentTime" required>
+                        <input type="time" id="appointmentTime" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="appointmentService">Tipo de Serviço *</label>
-                    <select id="appointmentService" name="appointmentService" required>
+                    <select id="appointmentService" required>
                         <option value="">Selecione um serviço</option>
                         <option value="Consultoria Jurídica">Consultoria Jurídica</option>
                         <option value="Direito Civil">Direito Civil</option>
@@ -95,13 +99,18 @@
 
                 <div class="form-group">
                     <label for="appointmentDescription">Descrição do Caso</label>
-                    <textarea id="appointmentDescription" name="appointmentDescription" placeholder="Descreva brevemente o assunto da consultoria..."></textarea>
+                    <textarea id="appointmentDescription" placeholder="Descreva brevemente o assunto da consultoria..."></textarea>
                 </div>
 
-                <button type="submit" class="btn-primary">Agendar Consulta</button>
+                <button type="submit" class="btn-primary" id="submitBtn">
+                    Agendar Consulta
+                </button>
             </form>
         </div>
     </div>
 
+    <script src="login.js"></script>
     <script src="appointments.js"></script>
+
 </body>
+</html>

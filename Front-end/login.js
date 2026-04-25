@@ -1,25 +1,8 @@
+console.log("LOGIN JS CARREGOU");
+
 // Local storage keys
 const USER_STORAGE_KEY = 'currentUser';
 const USER_DATA_KEY = 'userData';
-
-// User database (simulating backend - in real implementation, this would be on the server)
-const USER_DATABASE = {
-    'user@example.com': {
-        email: 'user@example.com',
-        password: '123456',
-        name: 'João Silva'
-    },
-    'admin@example.com': {
-        email: 'admin@example.com',
-        password: 'admin',
-        name: 'Maria Santos'
-    },
-    'client@example.com': {
-        email: 'client@example.com',
-        password: 'password',
-        name: 'Carlos Oliveira'
-    }
-};
 
 // Initialize login on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -50,31 +33,39 @@ function initializeLogin() {
 }
 
 function authenticateUser(event) {
+    console.log("FUNÇÃO CHAMADA");
     event.preventDefault();
     
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
-    
-    // Validate credentials against the database (simulating backend check)
-    const user = USER_DATABASE[email];
-    
-    if (!user || user.password !== password) {
-        alert('Email ou senha inválidos. Tente novamente.\n\nDica: Use user@example.com / 123456');
-        return;
-    }
-    
-    // Store user data in local storage (simulating backend response)
-    const userData = {
-        email: user.email,
-        name: user.name
-    };
-    
-    localStorage.setItem(USER_STORAGE_KEY, email);
-    localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-    
-    alert(`Bem-vindo, ${userData.name}!`);
-    // Redirect to appointments page or previous page
-    window.location.href = 'Pag_Agendamento.html';
+
+    fetch("http://127.0.0.1:8000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email: email,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+
+        if (data.user) {
+            localStorage.setItem("user_id", data.user.id);
+
+            alert("Login realizado!");
+            window.location.href = 'Pag_Agendamento.html';
+        } else {
+            alert("Email ou senha inválidos");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Erro ao conectar com o servidor");
+    });
 }
 
 function registerUser(event) {
@@ -84,47 +75,45 @@ function registerUser(event) {
     const email = document.getElementById('registerEmail').value.trim();
     const password = document.getElementById('registerPassword').value;
     const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
-    
-    // Validation
+
     if (!name || !email || !password) {
-        alert('Por favor, preencha todos os campos!');
+        alert("Preencha todos os campos!");
         return;
     }
-    
+
     if (password !== passwordConfirm) {
-        alert('As senhas não coincidem!');
+        alert("Senhas não coincidem!");
         return;
     }
-    
-    if (password.length < 6) {
-        alert('A senha deve ter no mínimo 6 caracteres!');
-        return;
-    }
-    
-    // Check if email already exists (simulating backend validation)
-    if (USER_DATABASE[email]) {
-        alert('Este email já está registrado. Tente fazer login ou use outro email.');
-        return;
-    }
-    
-    // Register new user
-    USER_DATABASE[email] = {
-        email: email,
-        password: password,
-        name: name
-    };
-    
-    // Auto-login after registration
-    const userData = {
-        email: email,
-        name: name
-    };
-    
-    localStorage.setItem(USER_STORAGE_KEY, email);
-    localStorage.setItem(USER_DATA_KEY, JSON.stringify(userData));
-    
-    alert(`Conta criada com sucesso! Bem-vindo, ${name}!`);
-    window.location.href = 'Pag_Agendamento.html';
+
+    fetch("http://127.0.0.1:8000/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            password: password
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("LOGIN RESPONSE:", data);
+
+        if (data.user) {
+            localStorage.setItem("user_id", data.user.id);
+
+            console.log("SALVO:", localStorage.getItem("user_id"));
+
+            alert("Login realizado!");
+            window.location.href = 'Pag_Agendamento.html';
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Erro ao conectar com o servidor");
+    });
 }
 
 function logoutUser() {
