@@ -11,8 +11,9 @@ router = APIRouter()
 @router.post("/appointments", response_model=AppointmentResponse)
 def create_appointment(data: AppointmentCreate, db: Session = Depends(get_db)):
     appointment = Appointment(
-        title=data.title,
+        service_type=data.service_type,
         date=data.date,
+        time=data.time,
         description=data.description,
         user_id=data.user_id
     )
