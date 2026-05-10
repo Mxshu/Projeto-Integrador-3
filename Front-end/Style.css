@@ -7,49 +7,55 @@ body{
 
 header {
     background-color: white;
-    padding: 20px;
+    padding: 15px 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border-bottom: 5px solid #ddd;
-    gap: 30px;
-    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    flex-wrap: wrap;
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
 }
 
 header img.logo {
     height: 60px;
     width: auto;
-    margin: 0;
     object-fit: contain;
-    flex-shrink: 0;
-    position: absolute;
-    left: 20px;
+    display: block;
 }
 
-.logo-link {
-    cursor: pointer;
+nav {
+    flex: 1;
     display: flex;
-    align-items: center;
-    text-decoration: none;
+    justify-content: center;
 }
 
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
+
     display: flex;
     gap: 30px;
+
+    align-items: center;
 }
 
 nav a {
     text-decoration: none;
     color: #333;
-    justify-content: center;
     font-weight: 500;
     font-size: 16px;
     font-family: 'Roboto Serif', serif;
-    font-style: bold;
     transition: color 0.3s ease;
 }
 
@@ -58,14 +64,11 @@ nav a:hover {
 }
 
 .user-section {
-    position: absolute;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
     display: flex;
     align-items: center;
     gap: 10px;
-    max-width: 200px;
+
+    position: relative;
 }
 
 .user-greeting {
@@ -828,5 +831,31 @@ h4 {
     
     .appointments-container {
         margin: 20px auto;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    nav {
+        width: 100%;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .user-section {
+        width: 100%;
+        justify-content: center;
+    }
+
+    header img.logo {
+        height: 50px;
     }
 }
