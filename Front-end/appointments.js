@@ -1,4 +1,4 @@
-console.log("appointments.js carregado");
+console.log("APPOINTMENTS NOVO");
 
 // API base
 const API_URL = "http://127.0.0.1:8000";
@@ -93,10 +93,8 @@ async function getAppointments() {
 }
 
 async function addAppointment() {
-    console.log("ADD APPOINTMENT CHAMADO");
-    console.trace();
-
     if (isSubmitting) return;
+
     isSubmitting = true;
 
     const btn = document.getElementById('submitBtn');
@@ -106,7 +104,7 @@ async function addAppointment() {
         const userId = parseInt(localStorage.getItem("user_id"));
 
         if (!userId || isNaN(userId)) {
-            alert("Usuário não logado!");
+            alert("Usuário não logado");
             return;
         }
 
@@ -118,17 +116,35 @@ async function addAppointment() {
             user_id: userId
         };
 
-        console.log("ENVIANDO:", appointment);
+        if (!appointment.date || !appointment.time || !appointment.service_type) {
+            alert("Preencha todos os campos obrigatórios");
+            return;
+        }
 
         const res = await fetch(`${API_URL}/appointments`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json"
+            },
             body: JSON.stringify(appointment)
         });
 
         const data = await res.json();
-        console.log("RESPOSTA:", data);
 
+        if (!res.ok) {
+            alert(data.detail || "Erro ao criar agendamento");
+            return;
+        }
+
+        document.getElementById('bookingForm').reset();
+
+        alert("Agendamento criado com sucesso!");
+
+        await displayAppointments();
+
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao conectar com servidor");
     } finally {
         isSubmitting = false;
         btn.disabled = false;
@@ -136,20 +152,29 @@ async function addAppointment() {
 }
 
 async function deleteAppointment(id) {
-    if (!confirm('Cancelar agendamento?')) return;
+    const confirmDelete = confirm("Tem certeza que deseja cancelar este agendamento?");
+
+    if (!confirmDelete) return;
 
     try {
         const res = await fetch(`${API_URL}/appointments/${id}`, {
             method: "DELETE"
         });
 
-        if (!res.ok) return alert("Erro ao deletar");
+        if (!res.ok) {
+            alert("Erro ao cancelar agendamento");
+            return;
+        }
 
         await displayAppointments();
+
         renderCalendar();
+
+        alert("Agendamento cancelado com sucesso");
 
     } catch (err) {
         console.error(err);
+        alert("Erro ao conectar com o servidor");
     }
 }
 
@@ -158,19 +183,51 @@ async function deleteAppointment(id) {
 // =============================
 
 function setupEventListeners() {
-    document.getElementById('prevMonth').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar();
+    const userGreeting = document.getElementById('userGreeting');
+
+    if (userGreeting) {
+        userGreeting.addEventListener('click', function(e) {
+
+            const currentUser = localStorage.getItem(USER_STORAGE_KEY);
+
+            if (!currentUser) {
+                return;
+            }
+
+            e.preventDefault();
+
+            const dropdown = document.getElementById('userDropdown');
+
+            if (dropdown) {
+                dropdown.classList.toggle('hidden');
+            }
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+
+        const userSection = document.querySelector('.user-section');
+
+        if (!userSection.contains(e.target)) {
+
+            const dropdown = document.getElementById('userDropdown');
+
+            if (dropdown) {
+                dropdown.classList.add('hidden');
+            }
+        }
     });
+}
 
-    document.getElementById('nextMonth').addEventListener('click', () => {
-        currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar();
-    });
+function logoutUser() {
 
-    const form = document.getElementById('bookingForm');
+    localStorage.removeItem("user_id");
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userData");
 
-    form.addEventListener('submit', handleSubmit);
+    alert("Logout realizado");
+
+    window.location.href = "Pag_Login.html";
 }
 
 function handleSubmit(e) {

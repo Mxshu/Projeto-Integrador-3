@@ -32,88 +32,98 @@ function initializeLogin() {
     }
 }
 
-function authenticateUser(event) {
-    console.log("FUNÇÃO CHAMADA");
+async function authenticateUser(event) {
     event.preventDefault();
-    
+
     const email = document.getElementById('loginEmail').value.trim();
     const password = document.getElementById('loginPassword').value;
 
-    fetch("http://127.0.0.1:8000/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: email,
-            password: password
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
+    try {
+        const res = await fetch("http://127.0.0.1:8000/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
 
-        if (data.user) {
-            localStorage.setItem("user_id", data.user.id);
+        const data = await res.json();
 
-            alert("Login realizado!");
-            window.location.href = 'Pag_Agendamento.html';
-        } else {
-            alert("Email ou senha inválidos");
+        if (!res.ok) {
+            alert(data.detail || "Email ou senha inválidos");
+            return;
         }
-    })
-    .catch(err => {
+
+        localStorage.setItem("user_id", data.user.id);
+
+        localStorage.setItem("currentUser", email);
+
+        localStorage.setItem("userData", JSON.stringify({
+            name: data.user.name,
+            email: data.user.email
+        }));
+
+        alert("Login realizado com sucesso!");
+
+        window.location.href = "Pag_Inicial.html";
+
+    } catch (err) {
         console.error(err);
         alert("Erro ao conectar com o servidor");
-    });
+    }
 }
 
-function registerUser(event) {
+
+async function registerUser(event) {
     event.preventDefault();
-    
+
     const name = document.getElementById('registerName').value.trim();
     const email = document.getElementById('registerEmail').value.trim();
     const password = document.getElementById('registerPassword').value;
     const passwordConfirm = document.getElementById('registerPasswordConfirm').value;
 
     if (!name || !email || !password) {
-        alert("Preencha todos os campos!");
+        alert("Preencha todos os campos");
         return;
     }
 
     if (password !== passwordConfirm) {
-        alert("Senhas não coincidem!");
+        alert("Senhas não coincidem");
         return;
     }
 
-    fetch("http://127.0.0.1:8000/register", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name: name,
-            email: email,
-            password: password
-        })
-    })
-    .then(res => res.json())
-    .then(data => {
-        console.log("LOGIN RESPONSE:", data);
+    try {
+        const res = await fetch("http://127.0.0.1:8000/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                email,
+                password
+            })
+        });
 
-        if (data.user) {
-            localStorage.setItem("user_id", data.user.id);
+        const data = await res.json();
 
-            console.log("SALVO:", localStorage.getItem("user_id"));
+        console.log("STATUS:", res.status);
+        console.log("DATA:", data);
 
-            alert("Login realizado!");
-            window.location.href = 'Pag_Agendamento.html';
+        if (res.ok) {
+            alert("Usuário registrado com sucesso!");
+            switchTab('login');
+        } else {
+            alert(data.detail || "Usuário já existe");
         }
-    })
-    .catch(err => {
-        console.error(err);
-        alert("Erro ao conectar com o servidor");
-    });
+
+    } catch (err) {
+        console.error("ERRO:", err);
+        alert("Erro ao conectar com servidor");
+    }
 }
 
 function logoutUser() {

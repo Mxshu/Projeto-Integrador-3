@@ -4,12 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento</title>
-    <link rel="stylesheet" href="Style.css" /> <!-- Link para o arquivo CSS externo -->
-    </head>
+    <link rel="stylesheet" href="Style.css" />
+</head>
+
 <body>
+
+    <script>
+        const userId = localStorage.getItem("user_id");
+
+        if (!userId) {
+            window.location.href = "Pag_Login.html";
+        }
+    </script>
+
     <script src="login.js"></script>
+
     <header>
-        <a href="Pag_Inicial.html" class="logo-link"><img class="logo" src="logo.png" alt="Logo do Escritório de Advocacia"></a>
+
+        <a href="Pag_Inicial.html" class="logo-link">
+            <img class="logo" src="Logo.png" alt="Logo do Escritório de Advocacia">
+        </a>
+
         <nav>
             <ul>
                 <li><a href="Pag_Inicial.html">Serviços</a></li>
@@ -17,40 +32,78 @@
                 <li><a href="agendar.html">Contato</a></li>
             </ul>
         </nav>
+
         <div class="user-section">
-            <a href="Pag_Login.html" id="userGreeting" class="user-greeting">Olá, visitante!</a>
+            <a href="Pag_Login.html" id="userGreeting" class="user-greeting">
+                Olá, visitante!
+            </a>
+
             <div id="userDropdown" class="user-dropdown hidden">
-                <button class="dropdown-item" onclick="editUserInfo()">Editar Informações</button>
-                <button class="dropdown-item logout" onclick="logoutUser()">Sair</button>
+                <button class="dropdown-item" onclick="editUserInfo()">
+                    Editar Informações
+                </button>
+
+                <button class="dropdown-item logout" onclick="logoutUser()">
+                    Sair
+                </button>
             </div>
         </div>
+
     </header>
+
     <div class="container">
+
         <h1>Andreia Regina Alves Advocacia</h1>
-        <p> lista de serviços</p>
+
+        <p>lista de serviços</p>
 
         <img class="perfil" src="Estatua.jpg" alt="Imagem de Serviços Jurídicos">
-        <h4> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. 
-            The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', 
-            making it look like readable English.</h4>
+
+        <h4>
+            It is a long established fact that a reader will be distracted by the readable
+            content of a page when looking at its layout. The point of using Lorem Ipsum
+            is that it has a more-or-less normal distribution of letters, as opposed to
+            using 'Content here, content here', making it look like readable English.
+        </h4>
+
     </div>
 
     <section class="reviews">
+
         <h2>Avaliações de Clientes</h2>
+
         <div class="review-container">
+
             <div class="review-card">
-                <p class="review-text">"Excelente atendimento! A Andreia Regina é muito profissional e atento. Resolveu meu caso de forma rápida e eficiente."</p>
+                <p class="review-text">
+                    "Excelente atendimento! A Andreia Regina é muito profissional e atento.
+                    Resolveu meu caso de forma rápida e eficiente."
+                </p>
+
                 <p class="review-author">- João Silva</p>
             </div>
+
             <div class="review-card">
-                <p class="review-text">"Muito satisfeito com o resultado. A equipe foi dedicada e manteve-me informado durante todo o processo."</p>
+                <p class="review-text">
+                    "Muito satisfeito com o resultado. A equipe foi dedicada e manteve-me
+                    informado durante todo o processo."
+                </p>
+
                 <p class="review-author">- Maria Santos</p>
             </div>
+
             <div class="review-card">
-                <p class="review-text">"Recomendo fortemente! Profissionalismo, competência e ética são as marcas da advocacia da Andreia."</p>
+                <p class="review-text">
+                    "Recomendo fortemente! Profissionalismo, competência e ética são as
+                    marcas da advocacia da Andreia."
+                </p>
+
                 <p class="review-author">- Carlos Oliveira</p>
             </div>
+
         </div>
+
     </section>
+
 </body>
 </html>
