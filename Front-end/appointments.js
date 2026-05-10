@@ -183,12 +183,25 @@ async function deleteAppointment(id) {
 // =============================
 
 function setupEventListeners() {
-    const userGreeting = document.getElementById('userGreeting');
+
+    const form = document.getElementById("bookingForm");
+
+    if (form) {
+        form.addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            addAppointment();
+        });
+    }
+
+    const userGreeting = document.getElementById("userGreeting");
 
     if (userGreeting) {
-        userGreeting.addEventListener('click', function(e) {
 
-            const currentUser = localStorage.getItem(USER_STORAGE_KEY);
+        userGreeting.addEventListener("click", function(e) {
+
+            const currentUser = localStorage.getItem("currentUser");
 
             if (!currentUser) {
                 return;
@@ -196,24 +209,28 @@ function setupEventListeners() {
 
             e.preventDefault();
 
-            const dropdown = document.getElementById('userDropdown');
+            const dropdown = document.getElementById("userDropdown");
 
             if (dropdown) {
-                dropdown.classList.toggle('hidden');
+                dropdown.classList.toggle("hidden");
             }
         });
     }
 
-    document.addEventListener('click', function(e) {
+    document.addEventListener("click", function(e) {
 
-        const userSection = document.querySelector('.user-section');
+        const userSection = document.querySelector(".user-section");
+
+        if (!userSection) {
+            return;
+        }
 
         if (!userSection.contains(e.target)) {
 
-            const dropdown = document.getElementById('userDropdown');
+            const dropdown = document.getElementById("userDropdown");
 
             if (dropdown) {
-                dropdown.classList.add('hidden');
+                dropdown.classList.add("hidden");
             }
         }
     });
