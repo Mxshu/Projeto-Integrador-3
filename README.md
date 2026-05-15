@@ -184,10 +184,6 @@ app.add_middleware(
 )
 ```
 
-## 📞 Suporte e Contribuições
-
-Para reportar bugs ou sugerir melhorias, abra uma issue neste repositório.
-
 ## 📄 Licença
 
 Este projeto foi desenvolvido como trabalho acadêmico.
